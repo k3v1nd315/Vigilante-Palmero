@@ -152,24 +152,22 @@ class Bot extends CI_Controller {
 																																											// Normas //
 
 																																				// Normas en texto controles //
-		elseif($this->telegram->text_has(["normas en"], "texto") && $this->telegram->text_contains("controles") && $this->telegram->words() <= 4){
-			$text = "<i>Querido miembro, las siguientes normas se aplican al grupo</i> <b>#1 - Controles y Accidentes La Palma - Avisos</b> <i> de </i><b>@TurboPower:</b>\n\n"
+		elseif($this->telegram->text_has(["normas en"], "texto") && $this->telegram->text_contains("grupo 1") && $this->telegram->words() <= 4){
+			$text = "<i>Querido miembro, las siguientes normas se aplican al grupo</i> <b>#1 - Grupo 1</b> <i> de </i><b>@TurboPower:</b>\n\n"
 							."<i>- No se pueden enviar imágenes de cuerpos oficiales y sus vehiculos.</i>\n"
 							."<i>- No enviar imágenes de un accidente donde salga la persona accidentada o el vehículo.</i>\n"
 							."<i>- Prohibido enviar falsos avisos, a esto se refiere por ejemplo,</i> <b>de los Llanos a El Paso libre</b>.\n"
-							."<i>- Bajo ningún concepto está permitido escribir por privado a la persona que comente un control, accidente o problema en la vía.</i>\n"
 							."<i>- Preguntar por el grupo si de un lado (El paso) a Los llanos (por ejemplo) está libre, si no se ha puesto nada en los grupos es por algo.</i>\n"
 							."<i>- Cualquier</i> <b>falta de respeto</b> <i>a un integrante del grupo o al Administrador será castigada con la expulsión directa y bloqueo del grupo.</i>\n"
-							."<i>- Preguntar el tipo de control al igual que poner el tipo de control que es, limitandonos a poner que hay un control pero no de qué.</i>\n"
 							."<i>- Si no está conforme a las normas y publicas algún comentario obsceno o cualquier comentario inapropiado quedará expulsado permanentemente de todos los grupos y añadido a la</i> <b> Lista negra.</b>\n\n"
-              ."<i>* Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio controles</b> <i>(No disponible aún).</i>";
+              ."<i>* Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio grupo 1</b> <i>(No disponible aún).</i>";
 					$this->telegram->send
 				->text($text, "HTML")
 			->send();
 		}
 
-		elseif($this->telegram->text_has(["normas en"], "texto") && $this->telegram->text_contains("ventas") && $this->telegram->words() <= 4){
-			$text = "<i>Querido miembro, las siguientes normas se aplican al grupo</i> <b>#1 - Tu mejor oferta</b> <i> de </i><b>@TurboPower:</b>\n\n"
+		elseif($this->telegram->text_has(["normas en"], "texto") && $this->telegram->text_contains("grupo 2") && $this->telegram->words() <= 4){
+			$text = "<i>Querido miembro, las siguientes normas se aplican al grupo</i> <b>#1 - grupo 2</b> <i> de </i><b>@TurboPower:</b>\n\n"
 							."<i>- Prohibida la venta de animales de compañía, ya sean gatos, perros, aves,...</i>\n"
 							."<i>-</i> <b>IMPORTANTE!</b> <i>Prohibido publicar el mismo anuncio en menos de 24h (1 día).</i>\n"
 							."<i>- Criticar el precio o estado del anunciante. Si crees que no deberia de estar ese anuncio, no estas conforme con el precio o su estado habla con la persona que lo ha publicado</i> <b>POR PRIVADO</b> <i>y</i> <b>SIEMPRE manteniendo la calma y respeto.</b>\n"
@@ -180,19 +178,19 @@ class Bot extends CI_Controller {
 							."<i>- Máximo dos imágenes del artículo con precio en una de las fotos y descripción (no obligatorio pero sí un máximo de dos imágenes).</i>\n"
 							."<i>- Máximo de una publicación diaria y no repetir el anuncio pasada una semana.</i>\n"
 							."<i>- Si no está conforme a las normas y publicas algún comentario obsceno o cualquier comentario inapropiado quedará expulsado permanentemente de todos los grupos y añadido a la</i> <b> Lista negra.</b>\n\n"
-              ."<i>* Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio Ventas</b> <i>(No disponible aún).</i>";
+              ."<i>* Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio grupo 2</b> <i>(No disponible aún).</i>";
 					$this->telegram->send
 				->text($text, "HTML")
 			->send();
 		}
 
-		elseif($this->telegram->text_has(["normas en"], "texto") && $this->telegram->text_contains("compartir coche") && $this->telegram->words() <= 5){
-			$text = "<i>Querido miembro, las siguientes normas se aplican al grupo</i> <b>Bla Bla Car - La Palma</b><i> de </i><b>@TurboPower</b> <i>y</i> <b>@oceanwoman</b>\n\n"
+		elseif($this->telegram->text_has(["normas en"], "texto") && $this->telegram->text_contains("grupo 3") && $this->telegram->words() <= 5){
+			$text = "<i>Querido miembro, las siguientes normas se aplican al grupo</i> <b>grupo 3</b><i> de </i><b>@TurboPower</b> <i>y</i> <b>@oceanwoman</b>\n\n"
 							."<i>- Todo miembro de este grupo deberá estar registrado en la web/aplicación oficial de Bla Bla Car para así poder dar los votos y consultar la reputación de dicho conductor en caso de viajar con el para más seguridad y confianza, también deberá de especificar el tipo de vehículo que lleva, a ser posible poniendo una foto de el (no es obligatorio).</i>\n"
 							."<i>- El conductor impone las normas, si se puede fumar o no en el coche, comer/beber, la cantidad y tamaño del equipaje, las personas que puede transportar a la vez en el vehículo (asientos traseros y delanteros y por supuesto el importe por llevar a cada persona.</i>\n"
 							."<i>- A la vez que se publiquen los viajes a través de la pagina, podéis publicarlos en el grupo de Telegram para darlo a conocer y llegar a más gente, pero siempre recomendamos a los acompañantes que antes de subirse al coche comprueben la buena reputación del conductor a través de la pagina web de bla bla car por vuestra seguridad y a su vez a los conductores para garantizar su buena reputación y conseguir compartir más viajes.</i>\n"
 							."<i>- Si no está conforme a las normas y publicas algún comentario obsceno o cualquier comentario inapropiado quedará expulsado permanentemente de todos los grupos y añadido a la</i> <b> Lista negra.</b>\n\n"
-		          ."<i>* Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio compartir coche</b> <i>(No disponible aún).</i>";
+		          ."<i>* Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio grupo 3</b> <i>(No disponible aún).</i>";
 					$this->telegram->send
 				->text($text, "HTML")
 			->send();
@@ -340,7 +338,7 @@ class Bot extends CI_Controller {
 																																																																																				// Enviar mensaje a grupos //
 elseif($this->telegram->receive("repite grupo 1 ", NULL, TRUE)){
 			$text = $this->telegram->text();
-			$text = substr($text, strlen("repite blablacar "));
+			$text = substr($text, strlen("repite grupo 1 "));
 			$this->telegram->send
 				->chat("ID")
 				->text($text, "HTML")
