@@ -19,8 +19,8 @@ class Bot extends CI_Controller {
 			->send();
 		}
 
-		// PRUEBA DE CODIGO CON BASE DE DATOS
-
+		// PRUEBA DE CODIGO CON BASE DE DATOS - Esto hay que crearlo (Ayuda)
+/*
 		elseif($this->telegram->text_command("register")){
 			$str = "Hola " .$this->telegram->user->first_name ."! ¿Me podrías decir si eres conductor o pasajero?\n"
 					."(*Soy* ...)";
@@ -63,7 +63,7 @@ class Bot extends CI_Controller {
 		}else{
 			// ---------
 		}
-	}
+	} */
         											/***********************************************************************************/
         											/*****************************    Sistema de ayudas    *****************************/						//OGG formato voice (notas)
         											/***********************************************************************************/
@@ -91,9 +91,9 @@ class Bot extends CI_Controller {
 	    }
 			elseif($this->telegram->receive(["Lista rutas", "Listado rutas"]) && $this->telegram->words() <= 2){
 					$text = "<i>A continuación te mostraré la lista de rutas de los miembros:</i>\n\n"
-									."- @Neptuno1 <i>Todos los días desde</i> <b>El Paso a Tazacorte</b> | <b>Horario:</b> 06:50\n"
-									."- @Cdhcrack <i>Casi todos los fines de semana desde</i> <b>Puntallana subida a Marcos y Corderos</b> | <b>Horario:</b> Consultar\n"
-									."- @Atr4563 <b>De Santa Cruz de La Palma a El Paso</b> | <b>Horario:</b> Ida 07:00 y vuelta 19:00\n\n"
+									."- Ruta 1\n"
+									."- Ruta 2\n"
+									."- Ruta 3\n\n"
 									."<i>* Si quieres ser añadido a la lista escribe por privado a</i> @TurboPower u @oceanwoman ";
 					$this->telegram->send
 							->text($text, "HTML")
@@ -197,8 +197,9 @@ class Bot extends CI_Controller {
 				->text($text, "HTML")
 			->send();
 		}
-
-		elseif($this->telegram->receive("Lista negra") && $this->telegram->words() <= 2){
+ 
+ 			//GET DB (Ayuda)
+		elseif($this->telegram->receive("Lista negra") && $this->telegram->words() <= 2){ 
 			$text = "<b>##LISTA NEGRA##</b>\n\n"
 							."- <i>De momento no hay ningún miembro en la lista.</i>";
 					$this->telegram->send
@@ -208,9 +209,9 @@ class Bot extends CI_Controller {
 
 		elseif($this->telegram->receive("Lista de grupos") && $this->telegram->words() <= 3){
 			$text = "<b>##LISTA DE GRUPOS##</b>\n\n"
-							."- <b>#1 - Solo Controles y Accidentes - Avisos:</b> @controleslapalma\n"
-							."- <b>#1 - Tu mejor oferta:</b> @ventaslapalma\n"
-							."- <b>Bla Bla Car - La Palma:</b> @compartircochelapalma\n\n"
+							."- Grupo 1\n"
+							."- Grupo 2\n"
+							."- Grupo 3\n\n"
 							."- <i> Si quieres que tu grupo esté aquí contacta con @TurboPower por privado.</i>";
 					$this->telegram->send
 				->text($text, "HTML")
@@ -220,7 +221,7 @@ class Bot extends CI_Controller {
 		elseif($this->telegram->receive("Normas") && $this->telegram->words() <= 1){
 			$text = "<i>Para saber que normativa cumplo puedes pedirme la lista de normas en texto o en audio:</i>\n\n"
 							."<i>* Para recibir las normas de un grupo en concreto escribe,</i> <b>Normas</b> <i>seguido de como quieres que te las envíe,</i> <b>en texto</b> <i>o</i> <b>en audio</b> <i>terminando con el grupo en concreto</i> "
-							."<i>del que quieres saber las normas</i>, <b>Controles</b><i>,</i> <b>Compartir coche</b> <i>ú</i> <b>Ventas.</b> <i>Ejemplo:</i> <b>Normas en texto Controles</b>\n\n"
+							."<i>del que quieres saber las normas</i>, <b>Grupo 1</b><i>,</i> <b>Grupo 2</b> <i>ú</i> <b>Grupo 3.</b> <i>Ejemplo:</i> <b>Normas en texto Grupo 1</b>\n\n"
 							."- <i>Si quieres recibir las normas en texto escribe:</i> <b>Normas en texto</b>\n"
 							."- <i>Si quieres recibir las normas en audio escribe:</i> <b>Normas en audio</b>.\n\n"
 							."- <i>¡Enterate de cuando se actualizen las normas! Escribe:</i> <b>Actualización Normas</b>.\n";
@@ -230,7 +231,7 @@ class Bot extends CI_Controller {
 		}
 
 		elseif($this->telegram->receive(["Actualizacion Normas", "Actualización Normas"]) && $this->telegram->words() <= 2){
-			$time = strtotime("2016-08-24 19:20"); // El 23
+			$time = strtotime("2016-08-24 19:20"); // El 24
 			$actualizacion = strtotime("now") - $time;
 			$text = "<b>Última actualización de las normas:</b> Hace " .floor($actualizacion / (60*60*24)) ." días. ";
 			$this->telegram->send
@@ -243,7 +244,7 @@ class Bot extends CI_Controller {
 												 	/****************************    Sistemas Generales    ***************************/
 													/***********************************************************************************/
 
-																																									// Mensaje bienvenida //
+	// Enviar por privado																																				// Mensaje bienvenida //
 	/*	elseif($this->telegram->data_received() == "new_chat_participant"){
 				$text = "<i>- Has ingresado correctamente al grupo:</i><b> " .$this->telegram->chat->title ."</b>";
 				if($this->telegram->is_chat_group() && !empty($this->telegram->chat->username)){ $text .=" @" .$this->telegram->chat->username; }
@@ -259,12 +260,12 @@ class Bot extends CI_Controller {
 					->text($text, "HTML")
 				->send();
 			} */
-																																																																											// kickear y banear //
+	// Filtrado de Palabras																																																																									// kickear y banear //
 	elseif($this->telegram->receive(["De donde eres", "grupo de", "ventas", "http", "grupo de", "libre de", "compra venta", "enlace", "mierda", "Puta", "puto", "capullo", "capulla", "cabron", "tontos", "tonto", "https", "http", "direccion a", "trail direccion"]) && $this->telegram->words() <= 2){
 			$this->telegram->send
 			->kick($this->telegram->user->id, $this->telegram->chat->id);
 		}
-
+	// Kick de usuarios y arreglar Ban
 		elseif($this->telegram->text_has(["/kick", "/ban"], TRUE) && $this->telegram->is_chat_group()){
 			$admins = $this->telegram->get_admins();
 			$admins[] = $this->config->item('creator');
@@ -288,33 +289,6 @@ class Bot extends CI_Controller {
 				}
 			}
 		}
-																																																																													// Limpiar chat //
-    elseif($this->telegram->text_has(["vigilante"], "Palmero") && $this->telegram->text_contains("limpia") && $user->id = $this->config->item('creator') && $this->telegram->words() <= 3){
-				         $this->telegram->send
-					         ->notification(FALSE)
-					         ->text(". \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n .")
-				         ->send();
-			         }
-																																																																													// Comprobar estado bot //
-		elseif($this->telegram->text_has(["vigilante", "palmero"], "ping") && $this->telegram->text_contains("!") && $this->telegram->words() <= 4){
-					$this->telegram->send
-					->notification(TRUE)
-					->reply_to(FALSE)
-					->text("Pong!")
-					->send();
-	    }
-		elseif($this->telegram->text_has(["vigilante", "palmero"], "pong") && $this->telegram->text_contains("!") && $this->telegram->words() <= 4){  // Forzar a poner ?
-					$this->telegram->send
-					->notification(TRUE)
-					->reply_to(TRUE)
-					->text("Pong!")
-					->send();
-					$this->telegram->send
-					->file('sticker', "BQADAQADnwUAAknjsAhJCUCN7cqVrwI");
-					$this->telegram->send
-					->text("<i>No soy tonto... deja el vacilón</i> " .$this->telegram->emoji("\ud83d\ude12"), "HTML")
-					->send();
-	    }
 																																																																																										// Saber la hora //
 		elseif($this->telegram->text_has(["qué", "la"], "hora") && $this->telegram->text_contains("?") && $this->telegram->words() <= 4){  // Forzar a poner ?
 					$this->telegram->send
@@ -326,16 +300,6 @@ class Bot extends CI_Controller {
 				->text("Muchas gracias a ti por contactar conmigo y espero te haya sido útil la respuesta! " .$this->telegram->emoji("\ud83d\udc6e"), "HTML")
                 ->reply_to(TRUE)
 			->send();
-		}
-
-																																																																																														// Mensaje broma //
-		elseif($this->telegram->text_has(["vigilante", "palmero"], "te la") && $this->telegram->text_contains("como") && $this->telegram->words() <= 5){
-			$this->telegram->send
-				->text("<b>¿Tu sabes lo que es el fiambre?</b> <i>Pues tranquilo, que no vas a pasar hambre...</i> <b>;</b><i>)</i> ", "HTML")
-                ->reply_to(TRUE)
-				->send();
-			$this->telegram->send
-				->file('sticker', "BQADBAADGgAD9VikAAEvUZ8dGx1_fgI");
 		}
 
 
@@ -374,27 +338,27 @@ class Bot extends CI_Controller {
 		}
 
 																																																																																				// Enviar mensaje a grupos //
-elseif($this->telegram->receive("repite blablacar ", NULL, TRUE)){
+elseif($this->telegram->receive("repite grupo 1 ", NULL, TRUE)){
 			$text = $this->telegram->text();
 			$text = substr($text, strlen("repite blablacar "));
 			$this->telegram->send
-				->chat("-1001048596638")
+				->chat("ID")
 				->text($text, "HTML")
 			->send();
 		}
 
-		elseif($this->telegram->receive("repite controles ", NULL, TRUE) && $user->id = $this->config->item('creator')){
+		elseif($this->telegram->receive("repite grupo 2 ", NULL, TRUE) && $user->id = $this->config->item('creator')){
 			$text = $this->telegram->text();
-			$text = substr($text, strlen("repite controles "));
+			$text = substr($text, strlen("repite grupo 2 "));
 			$this->telegram->send
-				->chat("-1001006120181")
+				->chat("ID")
 				->text($text, "HTML")
 			->send();
 		}
 
-elseif($this->telegram->receive("repite ofertas ", NULL, TRUE) && $user->id = $this->config->item('creator')){
+elseif($this->telegram->receive("repite grupo 3 ", NULL, TRUE) && $user->id = $this->config->item('creator')){
 			$text = $this->telegram->text();
-			$text = substr($text, strlen("repite ofertas "));
+			$text = substr($text, strlen("repite grupo 3 "));
 			$this->telegram->send
 				->chat("-1001004172849")
 				->text($text, "HTML")
@@ -403,26 +367,26 @@ elseif($this->telegram->receive("repite ofertas ", NULL, TRUE) && $user->id = $t
 																																							// Anuncio a todos
 		elseif($this->telegram->receive("anuncio todos", NULL, TRUE) && $user->id = $this->config->item('creator')){
 
-			$this->telegram->send->chat("-130686330") // Grupo controles: -1001006120181 // Grupo bla bla car: -1001048596638 // Tu mejor oferta: -1001004172849 // sabiduria: -130686330
+			$this->telegram->send->chat("ID") // Enviar audio a todos los grupos en los que está
 
-			->file('voice', FCPATH . '/files/podcast16-09-2016.mp3');
+			->file('voice', FCPATH . '/files/podcast.mp3');
 		}
 																																								// Enviar anuncios //
-		elseif($this->telegram->receive("anuncio blablacar", NULL, TRUE) && $user->id = $this->config->item('creator')){
+		elseif($this->telegram->receive("anuncio grupo 1", NULL, TRUE) && $user->id = $this->config->item('creator')){
 
-			$this->telegram->send->chat("-1001048596638")
-			->file('audio', FCPATH .'/files/blablacar.mp3');
+			$this->telegram->send->chat("ID")
+			->file('audio', FCPATH .'/files/grupo 1.mp3');
 		}
 																																							// Anuncio controles //
-		elseif($this->telegram->receive("anuncio controles", NULL, TRUE) && $user->id = $this->config->item('creator')){
+		elseif($this->telegram->receive("anuncio grupo 2", NULL, TRUE) && $user->id = $this->config->item('creator')){
 
-			$this->telegram->send->chat("-1001006120181")
-			->file('voice', FCPATH .'/files/controles.ogg');
+			$this->telegram->send->chat("ID")
+			->file('voice', FCPATH .'/files/grupo 2.ogg');
 		}
 																																							// anuncio tu mejor oferta //
-		elseif($this->telegram->receive("anuncio ventas", NULL, TRUE) && $user->id = $this->config->item('creator')){
-			$this->telegram->send->chat("-1001006120181")
-			->file('voice', FCPATH .'/files/ventas.ogg');
+		elseif($this->telegram->receive("anuncio grupo 3", NULL, TRUE) && $user->id = $this->config->item('creator')){
+			$this->telegram->send->chat("ID")
+			->file('voice', FCPATH .'/files/grupo 3.ogg');
 		}
 																																		// Para saber donde estás, id grupo, id de usuario //
 		elseif($this->telegram->receive("donde estoy")){
@@ -579,25 +543,6 @@ elseif($this->telegram->receive(["tiempo de el paso", "tiempo en el paso"]) && $
 			->send();
 		}
 	}
-
-																																									// PROBANDO KICKS //
-//	elseif($this->telegram->text_contains("/block", TRUE) && $user->id == $this->config->item('creator') && $this->telegram->has_reply){
-			//$datos->update_user_data($this->telegram->reply_user->id, 'blocked', TRUE);
-	//	elseif($this->telegram->receive("kick", "kickear")) && $this->config->item('creator') && $this->telegram->has_reply){
-	//		$this->telegram->reply_user->id, 'blocked', FALSE);
-	//	}
-		// echar usuario del grupo
-//		elseif($this->telegram->text_has(["/kick", "/ban"], TRUE) && $this->telegram->is_chat_group()){
-//			$admins = $this->telegram->get_admins();
-//			$admins[] = $this->config->item('creator');
-//			$admins[] = $this->config->item('this->telegram_bot_id');
-//			if(in_array($this->telegram->user->id, $admins)){
-//				$kick = NULL;
-//				if($this->telegram->has_reply){
-//					$kick = $this->telegram->reply_user->id;
-//				}
-//		}
-
 																																							// Probar funciones //
 		function prueba(){
 
@@ -611,21 +556,3 @@ elseif($this->telegram->receive(["tiempo de el paso", "tiempo en el paso"]) && $
 			echo ($tiempo[0] ." / " .$tiempo[1] ."ºC");
 		}
 	}
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////
-/// 								COSAS QUE HAY QUE HACER
-///
-///Lista administradores mejor estetica y que salga pongas donde lo envies te salga la de todos los grupos cada administrador y el grupo que administra.
-///repite que envie comando por ejemplo repite NORMAS y mande las normas al grupo.
-///Enviar cuando haya actualizacion de bla bla car y telegram para ios y telegram.
-///Normas habladas
-///Echar usuarios kick y ban con reply o mencionando y te añada a una lista negra que te bloquee de todos los grupos y los usuarios puedan consultar dicha lista + filtrado palabras
-///Mensaje repite para todos los grupos (tanto texto como audio, imagenes...) + 1 para 1 en concreto como está
-///Mensaje bienvenida privado
-///validar miembros en bla bla car y usuarios puedan dar reputacion 1 vez a cada personas y que se pueda consultar la reputacion con mencion o reply.
-///////////////////////////////////////////////////////////////////////////////////////////////////////
