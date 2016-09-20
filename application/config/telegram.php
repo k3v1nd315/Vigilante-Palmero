@@ -1,5 +1,5 @@
 <?php
-	$config['telegram_bot_id'] = '239312560';
-	$config['telegram_bot_key'] = 'AAEcq1ayJ2npBME7tCaZr--O75mAmavDnhQ';
-	$config['creator'] = '48204405';
+	$config['telegram_bot_id'] = 'ID';
+	$config['telegram_bot_key'] = 'KEY';
+	$config['creator'] = 'TUID';
 ?>
